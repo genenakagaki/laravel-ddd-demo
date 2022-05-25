@@ -1,0 +1,17 @@
+@startuml
+title Online Shop
+
+left to right direction
+
+actor "会員(買う人)" as buyer
+actor "会員(売る人)" as seller
+
+package application {
+    usecase "商品を購入" as buy
+    usecase "商品を郵送" as deliver
+}
+
+buyer --> buy
+seller --> deliver
+
+@enduml

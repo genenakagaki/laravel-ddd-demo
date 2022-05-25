@@ -1,0 +1,54 @@
+@startuml
+title Architecture
+
+node web [
+Web
+--
+HTTPリクエストのハンドリング
+]
+node service [
+Service
+--
+データ更新系処理
+]
+node repository [
+Repository
+--
+データ取得
+データ更新
+]
+node query [
+Query
+--
+表示用データ取得処理
+データ取得
+]
+node domain [
+Domain
+--
+ビジネスロジック
+]
+note left
+persistence以外どこでも使える
+end note
+node persistence [
+Persistence
+--
+DBアクセス
+]
+node external [
+External
+--
+外部サービスの使用
+]
+
+web --> service
+web --> query
+service --> repository
+service --> external
+repository --> persistence
+query --> persistence
+query --> external
+
+
+@enduml

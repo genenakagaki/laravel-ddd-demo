@@ -1,0 +1,9 @@
+@startuml
+title PHPめんどいって思ったこと
+
+start
+:Method overloadが無い！;
+:Arrayに方をもたせられない;
+:方が微妙;
+stop
+@enduml

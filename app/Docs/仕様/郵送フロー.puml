@@ -1,0 +1,23 @@
+@startuml
+title 郵送フロー
+
+start
+#business:郵送した商品を選択;
+#business:トラッキング番号入力;
+#business:郵送完了ボタン押す;
+if (郵送者した人と商品の持ち主が一致する) then (no)
+    #pink:エラー;
+    stop
+else (yes)
+    if (購入ステータス) then (郵送待ち以外)
+        #pink:エラー;
+        stop
+    else (郵送待ち)
+        #application:トラッキング番号を設定;
+        #application:郵送済みに変更;
+        #application:買い手へ郵送開始通知;
+        stop
+    endif
+endif
+
+@enduml

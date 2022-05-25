@@ -1,0 +1,51 @@
+@startuml
+title 購入フロー
+
+start
+#business:商品を選択;
+#business:個数を選択;
+#business:買う;
+if (購入個数) then (0)
+    #pink:エラー;
+    stop
+else (1以上)
+    if (請求金額) is (間違えてる) then
+        #pink:エラー;
+        stop
+    else (正しい)
+        if (在庫) is (無い) then
+            #pink:エラー;
+            stop
+        else (ある)
+            #application:在庫更新;
+            #application:郵送待ち状態に変更;
+            if (在庫の数) is (0) then
+                #application:売り手へ在庫切れ通知;
+            else (1以上)
+            endif
+            #application:買い手の決済;
+            note left: 参照：請求金額計算
+            #application:売り手へ送金;
+            note left: 参照：請求金額計算
+            #application:買い手へ取引完了通知;
+            #application:売り手へ取引完了通知;
+            stop
+        endif
+    endif
+endif
+
+package 請求金額計算 {
+    start
+    #application:商品合計額 = 商品価格 * 購入数量;
+    #application:手数料計算 = 商品合計額 * 10%;
+    #application:請求金額 = 商品合計額 + 配送料 + 手数料;
+    stop
+}
+
+package 売り手への送金額計算 {
+    start
+    #application:売り手への入金額 = 商品合計額 + 配送料;
+    stop
+}
+
+@enduml
