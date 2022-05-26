@@ -1,5 +1,6 @@
 <?php
 
+use App\Layers\Web\Controller\Shop\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(ShopController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('/shop/{shopItemId}', 'shopItemDetails');
+    Route::get('/shop/{shopItemId}/billing/{purchaseCount}', 'getBillingInfo');
+    Route::post('/shop/purchase', 'purchase');
 });
