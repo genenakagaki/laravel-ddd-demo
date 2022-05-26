@@ -2,11 +2,18 @@
 
 namespace App\Layers\Domain;
 
+use Illuminate\Support\Collection;
+
 class DomainEntity
 {
-    public array $events = [];
+    public Collection $events;
+
+    public function __construct()
+    {
+        $this->events = Collection::make([]);
+    }
 
     public function addEvent(DomainEvent $event): void {
-        array_push($this->events, $event);
+        $this->events->push($event);
     }
 }
