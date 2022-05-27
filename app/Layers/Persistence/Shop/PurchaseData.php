@@ -3,10 +3,9 @@
 namespace App\Layers\Persistence\Shop;
 
 use App\Layers\Domain\Member\Value\MemberId;
+use App\Layers\Domain\Shop\Type\PurchaseStatusType;
 use App\Layers\Domain\Shop\Value\PurchaseDetails;
-use App\Layers\Domain\Shop\Value\SalesDetails;
 use App\Layers\Domain\Shop\Value\ShippingDetails;
-use App\Layers\Domain\Type\PurchaseStatusType;
 
 class PurchaseData
 {

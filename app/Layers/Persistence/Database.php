@@ -2,7 +2,6 @@
 
 namespace App\Layers\Persistence;
 
-use App\Layers\Domain\Type\PurchaseStatusType;
 use App\Layers\Persistence\Member\MemberData;
 use App\Layers\Persistence\Shop\PurchaseData;
 use App\Layers\Persistence\Shop\ShopItemData;

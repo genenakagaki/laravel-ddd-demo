@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Layers\Domain\Type;
+namespace App\Layers\Domain\Shop\Type;
 
 enum PurchaseStatusType
 {

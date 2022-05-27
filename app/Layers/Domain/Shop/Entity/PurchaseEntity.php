@@ -5,11 +5,11 @@ namespace App\Layers\Domain\Shop\Entity;
 use App\Layers\Domain\DomainEntity;
 use App\Layers\Domain\Member\Value\MemberId;
 use App\Layers\Domain\Shop\Event\ShopItemInventoryEmptyEvent;
+use App\Layers\Domain\Shop\Type\PurchaseStatusType;
 use App\Layers\Domain\Shop\Value\PaymentByMember;
 use App\Layers\Domain\Shop\Value\PurchaseDetails;
 use App\Layers\Domain\Shop\Value\SalesDetails;
 use App\Layers\Domain\Shop\Value\ShippingDetails;
-use App\Layers\Domain\Type\PurchaseStatusType;
 use Illuminate\Support\Facades\Log;
 use RuntimeException;
 
@@ -70,7 +70,7 @@ class PurchaseEntity extends DomainEntity
         if ($this->shopItemInventoryCount == 0) {
             $this->addEvent(new ShopItemInventoryEmptyEvent($this->purchase->shopItemId));
         }
-    }
+   }
 
     public function registerShipping(MemberId $registeredBy, MemberId $sellerId, string $trackingNumber) {
         if ($registeredBy !== $sellerId) {
