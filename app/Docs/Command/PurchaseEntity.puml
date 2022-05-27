@@ -1,0 +1,39 @@
+@startuml
+title クラス図
+
+entity PurchaseEntity {
+    - purchaseId
+    - buyerId
+    - purchaseDetails
+    - shippingDetails
+    - shopItemInventoryCount
+    - status
+    + purchase()
+    + registerShipping()
+}
+
+class PurchaseDetails <<(V,business)>> {
+    - shopItemId
+    - itemPrice
+    - itemPurchaseCount
+    - salesDetails
+}
+
+class SalesDetails <<(V,business)>> {
+    - itemTotal
+    - serviceFee
+    - deliveryFee
+    - billedAmountToBuyer
+    - paymentToSeller
+}
+
+class ShippingDetails <<(V,business)>> {
+    - fromAddress
+    - toAddress
+    - trackingNumber
+}
+
+PurchaseEntity --> PurchaseDetails
+PurchaseEntity --> ShippingDetails
+PurchaseDetails --> SalesDetails
+@enduml

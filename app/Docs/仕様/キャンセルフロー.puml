@@ -1,0 +1,17 @@
+@startuml
+title キャンセルフロー
+
+start
+#business:購入履歴から選択;
+#business:キャンセルボタン押す;
+if (購入ステータス) then (郵送待ち以外)
+    #pink:エラー;
+    stop
+else (郵送待ち)
+    #application:購入ステータス変更\nキャンセル;
+    #application:商品の在庫更新\n買った分戻す;
+    #application:売り手へのキャンセル通知;
+    stop
+endif
+
+@enduml

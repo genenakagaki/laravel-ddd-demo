@@ -2,7 +2,7 @@
 title 郵送フロー
 
 start
-#business:郵送した商品を選択;
+#business:郵送待ち商品を選択;
 #business:トラッキング番号入力;
 #business:郵送完了ボタン押す;
 if (郵送者した人と商品の持ち主が一致する) then (no)

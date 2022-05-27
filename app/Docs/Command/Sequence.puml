@@ -1,0 +1,28 @@
+@startuml
+
+participant ShopController as cont <<Web>>
+participant PurchaseService as serv <<Service>>
+participant PurchaseEntity as entity <<Domain>>
+participant PurchaseRepository as repo <<Repository>>
+participant 外部サービス as ext <<External>>
+
+cont -> serv++: 購入のリクエスト
+serv -> repo++: 必要なデータ取得
+return 商品の値段、在庫、会員の住所
+serv -> ext++: 必要なデータ取得
+return 郵送料
+serv -> entity++: データをもとにEntity作成
+entity -> entity: 請求金額計算
+entity -> entity: 在庫更新
+entity -> entity: 郵送待ち状態に変更
+entity -> entity: 売り手への送金額計算
+return
+serv -> repo++: Entityのデータ保存
+return
+serv -> ext: 買い手の決済
+serv -> ext: 売り手への送金
+serv -> serv: 買い手へ取引完了通知
+serv -> serv: 売り手へ取引完了通知
+return
+
+@enduml

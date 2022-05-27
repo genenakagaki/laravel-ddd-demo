@@ -1,0 +1,54 @@
+@startuml
+title Architecture
+
+node web #palegreen[
+Web
+--
+HTTPリクエストのハンドリング
+]
+node service #palegreen[
+Service
+--
+データ更新系処理
+]
+node repository #palegreen[
+Repository
+--
+データ取得
+データ更新
+]
+node query [
+Query
+--
+表示用データ取得処理
+データ取得
+]
+node domain #palegreen[
+Domain
+--
+ビジネスロジック
+]
+note left
+persistence以外どこでも使える
+end note
+node persistence #palegreen[
+Persistence
+--
+DBアクセス
+]
+node external #palegreen[
+External
+--
+外部サービスの使用
+]
+
+web --> service
+web --> query
+service --> repository
+service --> external
+repository --> persistence
+query --> persistence
+query --> external
+
+
+@enduml

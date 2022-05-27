@@ -8,10 +8,12 @@ actor "会員(売る人)" as seller
 
 package application {
     usecase "商品を購入" as buy
+    usecase "購入をキャンセル" as cancel
     usecase "商品を郵送" as deliver
 }
 
 buyer --> buy
+buyer --> cancel
 seller --> deliver
 
 @enduml
